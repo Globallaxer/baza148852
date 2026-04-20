@@ -1,11 +1,8 @@
-// order-modal.js - исправленная версия (только уникальное имя)
-
 // модальное окно для заказа
 const orderModalElement = document.getElementById('order-modal');
 const closeBtn = orderModalElement?.querySelector('.modal-close');
 const orderForm = document.getElementById('order-form');
 
-// Убираем ошибку, просто логируем предупреждение, если элементов нет
 if (!orderModalElement) {
     console.warn('Модальное окно order-modal не найдено на этой странице');
 }
@@ -16,98 +13,18 @@ if (!orderForm) {
     console.warn('Форма заказа не найдена');
 }
 
-// остальной код оберните в проверку
 if (orderModalElement && closeBtn && orderForm) {
     // текущий выбранный товар (для одиночного заказа) или массив товаров
     let currentProduct = null;
     let currentCartItems = null;
 
-    function isLoggedIn() {
-        return !!localStorage.getItem('auth_token');
-    }
-
-    function getToken() {
-        return localStorage.getItem('auth_token');
-    }
-
-    function getUserId() {
-        const userStr = localStorage.getItem('user_data');
-        if (userStr) {
-            try {
-                const userData = JSON.parse(userStr);
-                if (userData && userData.id) {
-                    return userData.id;
-                }
-            } catch(e) {
-                console.error('Error parsing user_data:', e);
-            }
-        }
-        
-        const token = getToken();
-        if (!token) return null;
-        try {
-            const payload = JSON.parse(atob(token.split('.')[1]));
-            return payload.userId || payload.user_id;
-        } catch {
-            return null;
-        }
-    }
-
-    function getUserData() {
-        const userStr = localStorage.getItem('user_data');
-        if (userStr) {
-            try {
-                return JSON.parse(userStr);
-            } catch {
-                return null;
-            }
-        }
-        return null;
-    }
-
-    function getHeaders() {
-        return {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${getToken()}`
-        };
-    }
-
-    function showToast(message) {
-        const existingToasts = document.querySelectorAll('.toast-notification');
-        if (existingToasts.length >= 3) {
-            existingToasts[0].remove();
-        }
-        const toast = document.createElement('div');
-        toast.className = 'toast-notification';
-        toast.textContent = message;
-        document.body.appendChild(toast);
-        setTimeout(() => {
-            if (toast.parentNode) {
-                toast.classList.add('hide');
-                setTimeout(() => {
-                    if (toast.parentNode) toast.remove();
-                }, 300);
-            }
-        }, 3000);
-    }
-
     function showAuthAlert() {
         showToast(`Для оформления заказа необходимо войти в аккаунт`);
     }
 
-    function escapeHTML(str) {
-        if (!str) return '';
-        return str
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
-    }
-
     // Функция для получения товара из глобального хранилища
     function findProductById(productId) {
-        // Сначала пробуем через window.allProducts
+        //Через window.allProducts
         if (window.allProducts && Array.isArray(window.allProducts)) {
             const product = window.allProducts.find(p => p.id === productId);
             if (product) {
@@ -116,7 +33,7 @@ if (orderModalElement && closeBtn && orderForm) {
             }
         }
         
-        // Пробуем через window.products
+        //Через window.products
         if (window.products && Array.isArray(window.products)) {
             const product = window.products.find(p => p.id === productId);
             if (product) {
@@ -125,7 +42,7 @@ if (orderModalElement && closeBtn && orderForm) {
             }
         }
         
-        // Пробуем через window.bouquetsData
+        //Через window.bouquetsData
         if (window.bouquetsData) {
             for (const cat in window.bouquetsData) {
                 if (window.bouquetsData[cat] && window.bouquetsData[cat].products) {
@@ -305,7 +222,6 @@ if (orderModalElement && closeBtn && orderForm) {
     }
 
     // отправка формы
-    // отправка формы
 if (orderForm) {
     orderForm.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -327,7 +243,7 @@ if (orderForm) {
         
         let items = [];
         let totalAmount = 0;
-        let isFromCart = false; // Флаг: заказ из корзины или нет
+        let isFromCart = false;
         
         if (currentCartItems && currentCartItems.length > 0) {
             // Заказ нескольких товаров из корзины
@@ -351,8 +267,6 @@ if (orderForm) {
             }];
             totalAmount = currentProduct.price;
             
-            // Проверяем, есть ли этот товар в корзине (заказ из корзины или из каталога)
-            // Для этого нужно знать, откуда был открыт заказ
             if (window.orderFromCart === true) {
                 isFromCart = true;
             }
@@ -396,7 +310,7 @@ if (orderForm) {
                 const result = await response.json();
                 console.log('Заказ создан:', result);
                 
-                // ========== УДАЛЕНИЕ ТОВАРОВ ИЗ КОРЗИНЫ ТОЛЬКО ЕСЛИ ЗАКАЗ ИЗ КОРЗИНЫ ==========
+                //Удаление товаров из корзины
                 
                 if (isFromCart) {
                     console.log('Заказ из корзины - удаляем товар(ы) из корзины');
@@ -443,13 +357,11 @@ if (orderForm) {
                     console.log('Заказ НЕ из корзины - товар остается в корзине');
                 }
                 
-                // ========== КОНЕЦ УДАЛЕНИЯ ==========
                 
                 const itemsText = items.map(i => `${i.productName} x${i.quantity}`).join(', ');
                 showToast(`Спасибо, ${name}! Заказ №${result.order_id || 'создан'} принят. Наш менеджер свяжется с вами.`);
                 closeOrderModal();
                 
-                // Сбрасываем флаг
                 window.orderFromCart = false;
                 
                 // Обновляем корзину, если функция доступна
@@ -486,7 +398,7 @@ if (orderForm) {
     
     console.log('order-modal.js загружен');
 } else {
-    // Если модального окна нет, создаём заглушки
+
     window.openOrderModal = function(productId) {
         console.warn('Модальное окно заказа не найдено на этой странице');
         alert('Форма заказа доступна на странице каталога или в корзине');
@@ -495,5 +407,5 @@ if (orderForm) {
         console.warn('Модальное окно заказа не найдено на этой странице');
         alert('Форма заказа доступна на странице каталога или в корзине');
     };
-    console.log('order-modal.js загружен (режим заглушки)');
+    console.log('order-modal.js загружен');
 }

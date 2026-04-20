@@ -351,163 +351,6 @@
     transform: scale(1.2);
   }
   
-  /* Рассылка */
-  .newsletter {
-    padding: 60px 0;
-    background-color: var(--primary-color);
-    color: var(--white);
-  }
-  
-  .newsletter-box {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .newsletter h2 {
-    margin-bottom: 15px;
-    font-size: 2rem;
-  }
-  
-  .newsletter p {
-    margin-bottom: 30px;
-    max-width: 600px;
-  }
-  
-  .newsletter-form {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    gap: 10px;
-  }
-  
-  .newsletter-form input {
-    flex: 1;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 30px;
-    font-size: 1rem;
-  }
-  
-  .newsletter-form button {
-    border-radius: 30px;
-    padding: 15px 30px;
-    font-weight: 600;
-    background-color: var(--dark-color);
-    color: var(--white);
-    border: none;
-    cursor: pointer;
-    transition: var(--transition);
-  }
-  
-  .newsletter-form button:hover {
-    background-color: #222;
-  }
-  
-  /* Инстаграм */
-  .instagram-feed {
-    padding: 80px 0;
-    background-color: var(--light-color);
-  }
-  
-  .instagram-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 40px;
-  }
-  
-  .insta-item {
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .insta-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(232, 62, 140, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: var(--transition);
-  }
-  
-  .insta-item:hover .insta-overlay {
-    opacity: 1;
-  }
-  
-  .insta-overlay i {
-    font-size: 2rem;
-    color: var(--white);
-  }
-  
-  /* Адаптивность для главной */
-  @media (max-width: 768px) {
-    .hero {
-      height: auto;
-      min-height: auto;
-      padding: 100px 0;
-    }
-    
-    .hero h1 {
-      font-size: 2.2rem;
-    }
-    
-    .slide .container {
-      padding-top: 60px;
-      padding-bottom: 60px;
-    }
-    
-    .slider-btn {
-      width: 40px;
-      height: 40px;
-      font-size: 1rem;
-    }
-    
-    .prev {
-      left: 10px;
-    }
-    
-    .next {
-      right: 10px;
-    }
-    
-    .testimonial-btn.prev {
-      left: 0;
-    }
-    
-    .testimonial-btn.next {
-      right: 0;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .product-actions {
-      flex-direction: column;
-    }
-  }
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-
 /* Популярные товары */
 .popular {
     padding: 80px 0;
@@ -639,4 +482,154 @@
 .product-actions {
     display: flex;
     gap: 10px;
+}
+
+
+
+/*Адаптивность*/
+@media (max-width: 1024px) {
+    .hero {
+        min-height: 500px;
+    }
+    
+    .slide h1 {
+        font-size: 2.5rem;
+    }
+    
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+@media (max-width: 768px) {
+    .slide {
+        position: relative;
+        min-height: 450px;
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .slide .container {
+        padding: 0 20px;
+    }
+    
+    .slide h1 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .slide p {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    
+    .product-grid {
+        gap: 15px;
+    }
+    
+    .product-img {
+        height: 200px;
+    }
+    
+    .product-info {
+        padding: 12px;
+    }
+    
+    .product-info h3 {
+        font-size: 1rem;
+    }
+    
+    .category-card {
+        height: 150px;
+    }
+    
+    .category-card h3 {
+        font-size: 1rem;
+    }
+    
+    .feature-card {
+        padding: 20px;
+    }
+    
+    .feature-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+    
+    .testimonial-card {
+        padding: 20px;
+    }
+    
+    .testimonial-text {
+        font-size: 0.9rem;
+    }
+    
+    .client-photo {
+        width: 50px;
+        height: 50px;
+    }
+}
+@media (max-width: 550px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .category-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 350px;
+        margin-top: -100px;
+    }
+    
+    .slide {
+        min-height: 380px;
+    }
+    
+    .slide .container {
+        padding: 0 20px;
+    }
+    
+    .slide h1 {
+        font-size: 1.5rem;
+    }
+    
+    .slide p {
+        font-size: 0.8rem;
+    }
+    
+    .product-img {
+        height: 220px;
+    }
+    
+    .category-card {
+        height: 130px;
+    }
 }

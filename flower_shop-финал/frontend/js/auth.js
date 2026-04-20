@@ -1,5 +1,5 @@
 // дефолтная аватарка
-const DEFAULT_AVATAR = 'https://via.placeholder.com/40/e83e8c/white?text=🌸';
+const DEFAULT_AVATAR = 'https://ui-avatars.com/api/?background=e83e8c&color=fff&bold=true&size=40&font-size=20&name=🌸';
 
 // элементы модального окна авторизации
 const authModal = document.getElementById('auth-modal');
@@ -129,7 +129,7 @@ function updateHeaderAuth() {
     }
 }
 
-// выход из аккаунта
+
 function logout() {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('user_data');
@@ -138,7 +138,7 @@ function logout() {
     window.location.reload();
 }
 
-// открытие модального окна авторизации
+
 function openAuthModal() {
     authModal.classList.add('active');
     loginForm?.reset();
@@ -148,12 +148,12 @@ function openAuthModal() {
     document.querySelector('.auth-tab.active')?.click();
 }
 
-// закрытие модального окна авторизации
+
 function closeAuthModal() {
     authModal.classList.remove('active');
 }
 
-// открытие модального окна профиля
+
 function openProfileModal() {
     const user = getUserData();
     if (profileUsername) {
@@ -404,7 +404,7 @@ if (loginForm) {
                 if (data.is_superuser) {
                     showToast(`Вы вошли как администратор. Перенаправление в админ-панель...`);
                     setTimeout(() => {
-                        window.location.href = '/admin/';
+                        window.location.href = 'http://127.0.0.1:8000/admin/';
                     }, 1500);
                 } else {
                     window.location.reload();
