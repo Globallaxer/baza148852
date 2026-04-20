@@ -188,7 +188,7 @@
 .catalog-cta {
   padding: 60px 0;
   text-align: center;
-  background-color: #f0f9f0;
+  background-color: #fff0f5;
 }
 
 .catalog-cta h2 {
@@ -211,7 +211,7 @@
 
 
 
-/* ========== АДАПТИВНОСТЬ КАТАЛОГА ========== */
+/*Адаптивность*/
 
 @media (max-width: 1024px) {
     .catalog-header {

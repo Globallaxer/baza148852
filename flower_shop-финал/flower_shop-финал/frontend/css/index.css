@@ -351,163 +351,6 @@
     transform: scale(1.2);
   }
   
-  /* Рассылка */
-  .newsletter {
-    padding: 60px 0;
-    background-color: var(--primary-color);
-    color: var(--white);
-  }
-  
-  .newsletter-box {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .newsletter h2 {
-    margin-bottom: 15px;
-    font-size: 2rem;
-  }
-  
-  .newsletter p {
-    margin-bottom: 30px;
-    max-width: 600px;
-  }
-  
-  .newsletter-form {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    gap: 10px;
-  }
-  
-  .newsletter-form input {
-    flex: 1;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 30px;
-    font-size: 1rem;
-  }
-  
-  .newsletter-form button {
-    border-radius: 30px;
-    padding: 15px 30px;
-    font-weight: 600;
-    background-color: var(--dark-color);
-    color: var(--white);
-    border: none;
-    cursor: pointer;
-    transition: var(--transition);
-  }
-  
-  .newsletter-form button:hover {
-    background-color: #222;
-  }
-  
-  /* Инстаграм */
-  .instagram-feed {
-    padding: 80px 0;
-    background-color: var(--light-color);
-  }
-  
-  .instagram-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 40px;
-  }
-  
-  .insta-item {
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .insta-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(232, 62, 140, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: var(--transition);
-  }
-  
-  .insta-item:hover .insta-overlay {
-    opacity: 1;
-  }
-  
-  .insta-overlay i {
-    font-size: 2rem;
-    color: var(--white);
-  }
-  
-  /* Адаптивность для главной */
-  @media (max-width: 768px) {
-    .hero {
-      height: auto;
-      min-height: auto;
-      padding: 100px 0;
-    }
-    
-    .hero h1 {
-      font-size: 2.2rem;
-    }
-    
-    .slide .container {
-      padding-top: 60px;
-      padding-bottom: 60px;
-    }
-    
-    .slider-btn {
-      width: 40px;
-      height: 40px;
-      font-size: 1rem;
-    }
-    
-    .prev {
-      left: 10px;
-    }
-    
-    .next {
-      right: 10px;
-    }
-    
-    .testimonial-btn.prev {
-      left: 0;
-    }
-    
-    .testimonial-btn.next {
-      right: 0;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .product-actions {
-      flex-direction: column;
-    }
-  }
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-
 /* Популярные товары */
 .popular {
     padding: 80px 0;
@@ -643,9 +486,7 @@
 
 
 
-/* ========== АДАПТИВНОСТЬ ГЛАВНОЙ СТРАНИЦЫ ========== */
-
-/* Планшеты */
+/*Адаптивность*/
 @media (max-width: 1024px) {
     .hero {
         min-height: 500px;
@@ -669,42 +510,27 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 25px;
     }
-    
-    .instagram-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
 }
-
-/* Телефоны */
 @media (max-width: 768px) {
-    .hero {
-        min-height: 400px;
+    .slide {
+        position: relative;
+        min-height: 450px;
+        background-size: cover;
+        background-position: center;
     }
     
     .slide .container {
-        padding: 60px 20px;
+        padding: 0 20px;
     }
     
     .slide h1 {
         font-size: 1.8rem;
+        margin-bottom: 15px;
     }
     
     .slide p {
         font-size: 0.9rem;
-    }
-    
-    .slider-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 0.9rem;
-    }
-    
-    .prev {
-        left: 10px;
-    }
-    
-    .next {
-        right: 10px;
+        margin-bottom: 20px;
     }
     
     .product-grid {
@@ -721,24 +547,6 @@
     
     .product-info h3 {
         font-size: 1rem;
-    }
-    
-    .product-info p {
-        font-size: 0.8rem;
-    }
-    
-    .current-price {
-        font-size: 1rem;
-    }
-    
-    .product-buttons {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .btn-small {
-        padding: 8px 12px;
-        font-size: 12px;
     }
     
     .category-card {
@@ -759,14 +567,6 @@
         font-size: 1.3rem;
     }
     
-    .feature-card h3 {
-        font-size: 1rem;
-    }
-    
-    .feature-card p {
-        font-size: 0.8rem;
-    }
-    
     .testimonial-card {
         padding: 20px;
     }
@@ -779,31 +579,7 @@
         width: 50px;
         height: 50px;
     }
-    
-    .newsletter-box {
-        padding: 30px 20px;
-    }
-    
-    .newsletter h2 {
-        font-size: 1.5rem;
-    }
-    
-    .newsletter-form {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .instagram-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-    }
-    
-    .insta-item {
-        height: 120px;
-    }
 }
-
-/* Маленькие телефоны */
 @media (max-width: 550px) {
     .product-grid {
         grid-template-columns: 1fr;
@@ -830,10 +606,15 @@
 @media (max-width: 480px) {
     .hero {
         min-height: 350px;
+        margin-top: -100px;
+    }
+    
+    .slide {
+        min-height: 380px;
     }
     
     .slide .container {
-        padding: 50px 15px;
+        padding: 0 20px;
     }
     
     .slide h1 {
@@ -844,55 +625,11 @@
         font-size: 0.8rem;
     }
     
-    .slider-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 0.8rem;
-    }
-    
     .product-img {
         height: 220px;
     }
     
     .category-card {
         height: 130px;
-    }
-    
-    .instagram-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .insta-item {
-        height: 100px;
-    }
-    
-    .testimonial-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 0.8rem;
-    }
-}
-
-/* ========== ФИКС ИЗОБРАЖЕНИЙ НА МОБИЛЬНЫХ ========== */
-
-@media (max-width: 768px) {
-    .slide {
-        background-size: cover !important;
-        background-position: center !important;
-        min-height: 400px;
-    }
-    
-    .slide .container {
-        padding: 80px 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .slide {
-        min-height: 350px;
-    }
-    
-    .slide .container {
-        padding: 60px 15px;
     }
 }
