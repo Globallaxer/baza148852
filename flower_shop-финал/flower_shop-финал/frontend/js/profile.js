@@ -1,89 +1,10 @@
-// profile.js - ПОЛНАЯ ВЕРСИЯ С ЧЕКБОКСАМИ И КНОПКОЙ ЗАКАЗА (БЕЗ СЧЕТЧИКА)
-
 let userCart = [];
 let userOrders = [];
 let userFavorites = [];
 let selectedItems = new Set();
 
-// ========== ОСНОВНЫЕ ФУНКЦИИ ==========
 
-function getToken() {
-    return localStorage.getItem('auth_token');
-}
-
-function isLoggedIn() {
-    return !!getToken();
-}
-
-function getUserId() {
-    const userStr = localStorage.getItem('user_data');
-    if (!userStr) return null;
-    
-    try {
-        const userData = JSON.parse(userStr);
-        if (userData.id) return userData.id;
-        if (userData.user_id) return userData.user_id;
-        if (userData.userId) return userData.userId;
-        
-        const token = getToken();
-        if (token) {
-            const payload = JSON.parse(atob(token.split('.')[1]));
-            return payload.user_id || payload.userId || payload.sub;
-        }
-        return null;
-    } catch(e) {
-        console.error('getUserId error:', e);
-        return null;
-    }
-}
-
-function getUserData() {
-    const userStr = localStorage.getItem('user_data');
-    if (!userStr) return null;
-    try {
-        return JSON.parse(userStr);
-    } catch(e) {
-        return null;
-    }
-}
-
-function getHeaders() {
-    return {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${getToken()}`
-    };
-}
-
-function showToast(message) {
-    const existingToasts = document.querySelectorAll('.toast-notification');
-    if (existingToasts.length >= 3) {
-        existingToasts[0].remove();
-    }
-    const toast = document.createElement('div');
-    toast.className = 'toast-notification';
-    toast.textContent = message;
-    document.body.appendChild(toast);
-    setTimeout(() => {
-        if (toast.parentNode) {
-            toast.classList.add('hide');
-            setTimeout(() => {
-                if (toast.parentNode) toast.remove();
-            }, 300);
-        }
-    }, 3000);
-}
-
-function escapeHTML(str) {
-    if (!str) return '';
-    return str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-}
-
-// ========== ФУНКЦИИ ДЛЯ ЧЕКБОКСОВ И ЗАКАЗА ==========
+//Чекбоксы + заказ
 
 function toggleSelectAll() {
     if (selectedItems.size === userCart.length && userCart.length > 0) {
@@ -111,7 +32,6 @@ function orderSingleItem(item) {
     }
 }
 
-// ========== ФУНКЦИИ КОРЗИНЫ ==========
 
 async function loadCart() {
     const container = document.getElementById('cart-container');
@@ -233,7 +153,7 @@ async function checkout() {
     }
 }
 
-// ========== РЕНДЕРИНГ КОРЗИНЫ ==========
+//Рендеринг корзины
 
 function renderCart() {
     const container = document.getElementById('cart-container');
@@ -365,7 +285,7 @@ function renderCart() {
     }
 }
 
-// ========== ИЗБРАННОЕ ==========
+//Избранное
 
 async function loadFavorites() {
     const container = document.getElementById('favorites-container');
@@ -521,7 +441,7 @@ function renderFavorites() {
     });
 }
 
-// ========== ЗАКАЗЫ ==========
+//Заказы
 
 async function loadOrders() {
     const container = document.getElementById('orders-container');
@@ -682,7 +602,7 @@ function renderOrders() {
     });
 }
 
-// ========== ВКЛАДКИ ==========
+//Вкладки
 
 function initTabs() {
     const cartBtn = document.querySelector('.profile-tab-btn[data-tab="cart"]');
@@ -736,7 +656,7 @@ function initTabs() {
     }
 }
 
-// ========== ИНИЦИАЛИЗАЦИЯ ==========
+//Инициализация
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Profile page loaded');
@@ -797,7 +717,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadOrders();
 });
 
-// ========== ГЛОБАЛЬНЫЕ ФУНКЦИИ ==========
+//Глрбальные функции
 
 window.logout = function() {
     localStorage.removeItem('auth_token');

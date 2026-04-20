@@ -1,5 +1,3 @@
-// index.js - исправленная версия с избранным
-
 async function loadPopularProducts() {
     try {
         const response = await fetch(`${API_BASE_URL}/flowers/`);
@@ -127,7 +125,7 @@ function showToast(message) {
     if (existingToasts.length >= 3) {
         existingToasts[0].remove();
     }
-    const toast = document.createElяement('div');
+    const toast = document.createElement('div');
     toast.className = 'toast-notification';
     toast.textContent = message;
     document.body.appendChild(toast);

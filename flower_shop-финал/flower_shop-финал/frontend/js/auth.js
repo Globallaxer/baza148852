@@ -129,7 +129,7 @@ function updateHeaderAuth() {
     }
 }
 
-// выход из аккаунта
+
 function logout() {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('user_data');
@@ -138,7 +138,7 @@ function logout() {
     window.location.reload();
 }
 
-// открытие модального окна авторизации
+
 function openAuthModal() {
     authModal.classList.add('active');
     loginForm?.reset();
@@ -148,12 +148,12 @@ function openAuthModal() {
     document.querySelector('.auth-tab.active')?.click();
 }
 
-// закрытие модального окна авторизации
+
 function closeAuthModal() {
     authModal.classList.remove('active');
 }
 
-// открытие модального окна профиля
+
 function openProfileModal() {
     const user = getUserData();
     if (profileUsername) {

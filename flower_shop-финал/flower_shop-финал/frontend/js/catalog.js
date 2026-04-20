@@ -1,11 +1,8 @@
-// catalog.js - полная исправленная версия
-
 let allProducts = [];
 let cachedFavorites = [];
 let cart = [];
 let cartCount = 0;
 
-// ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
 
 function isLoggedIn() {
     return !!localStorage.getItem('auth_token');
@@ -99,14 +96,13 @@ function updateCartCounter() {
     });
 }
 
-// ========== ЗАГРУЗКА ТОВАРОВ ==========
+//Загрузка товаров
 
 async function loadProductsFromDB() {
     try {
         const response = await fetch(`${API_BASE_URL}/flowers/`);
         if (response.ok) {
             allProducts = await response.json();
-            // ВАЖНО: экспортируем в window для доступа из других скриптов
             window.allProducts = allProducts;
             console.log('Загружено товаров:', allProducts.length);
             return true;
@@ -120,7 +116,7 @@ async function loadProductsFromDB() {
     }
 }
 
-// ========== ИЗБРАННОЕ ==========
+//Избранное
 
 async function loadFavorites() {
     if (!isLoggedIn()) {
@@ -195,7 +191,7 @@ function updateWishlistButton(productId, isFav) {
     }
 }
 
-// ========== КОРЗИНА ==========
+//Корзина
 
 async function loadCart() {
     if (!isLoggedIn()) {
@@ -285,7 +281,7 @@ async function addToCart(product) {
     }
 }
 
-// ========== ОТОБРАЖЕНИЕ ТОВАРОВ ==========
+//Отображение товаров
 
 function displayBouquets(category) {
     const productsContainer = document.getElementById('products-container');
@@ -409,7 +405,7 @@ function attachEventHandlers() {
     });
 }
 
-// ========== ИНИЦИАЛИЗАЦИЯ ==========
+//Инициализация
 
 document.addEventListener('DOMContentLoaded', async function() {
     console.log('Catalog.js загружен');
@@ -443,9 +439,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     displayBouquets(activeCategory);
 });
 
-// ========== ГЛОБАЛЬНЫЕ ФУНКЦИИ ==========
+//Глобальные функции
 
-// Экспортируем все необходимые функции и переменные в window
 window.allProducts = allProducts;
 window.isLoggedIn = isLoggedIn;
 window.getToken = getToken;
@@ -457,6 +452,5 @@ window.addToCart = addToCart;
 window.loadCart = loadCart;
 window.loadFavorites = loadFavorites;
 window.showToast = showToast;
-window.loadProductsFromDB = loadProductsFromDB; // Добавляем эту функцию
-// В конце catalog.js добавьте:
+window.loadProductsFromDB = loadProductsFromDB;
 window.allProducts = allProducts;

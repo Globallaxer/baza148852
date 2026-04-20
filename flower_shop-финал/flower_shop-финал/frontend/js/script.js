@@ -1,8 +1,6 @@
-// script.js - полная версия с бургер-меню
-
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ========== БУРГЕР-МЕНЮ ==========
+    //Меню
     const hamburger = document.querySelector('.hamburger');
     const navMain = document.querySelector('.nav-main');
     
@@ -52,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ========== ПЛАВНАЯ ПРОКРУТКА ==========
+    //Плавная прокрутка
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
@@ -79,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // ========== ПОДСВЕТКА АКТИВНОГО ПУНКТА МЕНЮ ==========
+    //Подстветка активного пункта меню
     const navLinks = document.querySelectorAll('.nav-main a');
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     
@@ -91,13 +89,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // ========== АДАПТИВНЫЕ ИЗОБРАЖЕНИЯ ==========
+    //Адаптивные изображения
     function fixHeroImage() {
         const heroSlides = document.querySelectorAll('.slide');
         heroSlides.forEach(slide => {
             const bgImage = slide.style.backgroundImage;
             if (bgImage && bgImage.includes('url')) {
-                // Убеждаемся что фон корректно отображается на мобильных
                 slide.style.backgroundSize = 'cover';
                 slide.style.backgroundPosition = 'center';
                 slide.style.backgroundRepeat = 'no-repeat';
@@ -122,25 +119,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-// Функция для показа уведомлений
-function showToast(message) {
-    const existingToasts = document.querySelectorAll('.toast-notification');
-    if (existingToasts.length >= 3) {
-        existingToasts[0].remove();
-    }
-    
-    const toast = document.createElement('div');
-    toast.className = 'toast-notification';
-    toast.textContent = message;
-    document.body.appendChild(toast);
-    
-    setTimeout(() => {
-        if (toast.parentNode) {
-            toast.classList.add('hide');
-            setTimeout(() => {
-                if (toast.parentNode) toast.remove();
-            }, 300);
-        }
-    }, 3000);
-}
