@@ -26,28 +26,6 @@ function getHeaders() {
     return headers;
 }
 
-function showToast(message) {
-    if (window.showToast) {
-        window.showToast(message);
-        return;
-    }
-    const existingToasts = document.querySelectorAll('.toast-notification');
-    if (existingToasts.length >= 3) {
-        existingToasts[0].remove();
-    }
-    const toast = document.createElement('div');
-    toast.className = 'toast-notification';
-    toast.textContent = message;
-    document.body.appendChild(toast);
-    setTimeout(() => {
-        if (toast.parentNode) {
-            toast.classList.add('hide');
-            setTimeout(() => {
-                if (toast.parentNode) toast.remove();
-            }, 300);
-        }
-    }, 3000);
-}
 
 function escapeHTML(str) {
     if (!str) return '';
